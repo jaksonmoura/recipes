@@ -15,3 +15,106 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+$red: #FA2434;
+$red-hover: #CA1D2A;
+
+@mixin box-shadow {
+	-webkit-box-shadow: rgba(0, 0, 0, 0.09) 0 2px 0;
+	-moz-box-shadow: rgba(0, 0, 0, 0.09) 0 2px 0;
+	box-shadow: rgba(0, 0, 0, 0.09) 0 2px 0;
+}
+
+@mixin default-box{
+	background: white;
+	@include box-shadow;
+	padding: 1em 5%;
+	border-radius: 5px;
+}
+
+body{
+	background:#E7E7E7;
+}
+
+a:hover{
+	text-decoration: none;
+}
+
+.navbar-brand a{
+	text-transform: uppercase;
+	color: $red;
+	letter-spacing: -1px;
+	font-weight: 700px;
+	font-size: 26px;
+}
+
+.recipe{
+	background: white;
+	border-radius: 5px;
+	margin-bottom: 40px;
+	@include box-shadow;
+
+	.image_wrapper{
+		max-width: 100%;
+		border-radius: 5px 5px 0 0;
+		overflow: hidden;
+	}
+
+	img{
+		width: 100%;
+		-webkit-transition: all ease-in-out .3s;
+		-moz-transition: all ease-in-out .3s;
+		transition: all ease-in-out .3s;
+
+		&:hover{
+			-webkit-transform: scale(1.07);
+			-moz-transform: scale(1.07);
+			transform: scale(1.07);
+		}
+	}
+
+	h2{
+		color: $red;
+		font-size: 20px;
+		padding: 15px 5%;
+		&:hover{
+			color: $red-hover;
+		}
+	}
+}
+
+// Show
+
+.main_content {
+	padding: 0 0 50px 0;
+}
+
+.recipe_image{
+	max-width: 100%;
+	border-radius: 5px;
+	@include box-shadow;
+}
+
+#recipe_top{
+	margin-bottom: 50px;
+}
+
+.recipe_info, .ingredients, .directions{
+	@include default-box;
+	min-height: 360px;
+
+	h1{
+		font-size: 30px;
+		color: $red;
+		font-weight: normal;
+	}
+	.description{
+		color: #8a8a8a;
+		font-size: 20px;
+	}
+}
+
+.ingredients, .directions{
+	margin-bottom: 50px;
+
+}
