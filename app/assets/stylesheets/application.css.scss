@@ -95,6 +95,24 @@ a:hover{
 	@include box-shadow;
 }
 
+.recipe_edit{
+
+	max-width: 100%;
+	background:#fff;
+	border-radius: 5px;
+	padding: 10px;
+	text-align: center;
+	@include box-shadow;
+
+	.recipe_edit_image{
+		max-width: 85%;
+		margin: 5px;
+		border-radius: 5px;
+		// border: 25px solid #fff;
+	}
+}
+
+
 #recipe_top{
 	margin-bottom: 30px;
 }

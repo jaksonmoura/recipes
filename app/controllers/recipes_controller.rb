@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!, except: [:show, :index]
+  before_filter :verify_owner!, only: [:edit]
 
   # GET /recipes
   # GET /recipes.json
@@ -15,7 +16,7 @@ class RecipesController < ApplicationController
 
   # GET /recipes/new
   def new
-    @recipe = Recipe.new
+    @recipe = current_user.recipes.build
   end
 
   # GET /recipes/1/edit
@@ -25,7 +26,7 @@ class RecipesController < ApplicationController
   # POST /recipes
   # POST /recipes.json
   def create
-    @recipe = Recipe.new(recipe_params)
+    @recipe = current_user.recipies.build(recipe_params)
 
     respond_to do |format|
       if @recipe.save
@@ -64,6 +65,12 @@ class RecipesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def verify_owner!
+      unless current_user.id == @recipe.user_id
+        redirect_to :back, notice: "You're not allowed to do this!"
+      end
+    end
+
     def set_recipe
       @recipe = Recipe.find(params[:id])
     end

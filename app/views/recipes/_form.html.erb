@@ -1,35 +1,53 @@
-<%= form_for @recipe, :html => { :multipart => true } do |f| %>
-  <% if @recipe.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+<div class="main_content">
+  <div id="recipe_top">
+    <%= form_for @recipe, :html => { :multipart => true } do |f| %>
+    <div class="row">
+      <h1 clas="page-header"><%= params[:action].capitalize %> recipe
+        <div class="btn-group pull-right">
+          <%= f.submit "Save", class: "btn btn btn-primary" %>
+          <%= link_to 'Show', @recipe, class: 'btn btn-default' %>
+        </div>
+      </h1>
+    </div>
+      <% if @recipe.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
 
-      <ul>
-      <% @recipe.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <ul>
+          <% @recipe.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="recipe_edit">
+          <%= image_tag(@recipe.image.url(:medium), class: "recipe_edit_image") %>
+          <%= f.file_field :image, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="recipe_info">
+          <%= f.label :title %><br>
+          <%= f.text_field :title, class: "form-control" %><br/>
+          <%= f.label :description %><br>
+          <%= f.text_area :description, class: "form-control" %>
+        </div>
+      </div>
     </div>
-  <% end %>
-
-<div class="panel panel-default">
-  <div class="panel-body">
-    
-    <div class="form-group">
-      <%= f.label :title %><br>
-      <%= f.text_field :title, class: "form-control" %>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="ingredients">
+        <h1>Ingridients</h1>
+      </div>
     </div>
-    <div class="form-group">
-      <%= f.label :description %><br>
-      <%= f.text_area :description, class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :image %>
-      <%= f.file_field :image, class: "form-control" %>
-    </div>
-    <div class="form-group">
-      <%= f.submit "Save", class: "btn btn-lg btn-primary" %>
+    <div class="col-md-6">
+      <div class="directions">
+        <h1>Directions</h1>
+      </div>
     </div>
   </div>
 </div>
-
 <% end %>
