@@ -121,7 +121,7 @@ a:hover{
 	@include default-box;
 	min-height: 360px;
 
-	h1{
+	h3{
 		font-size: 30px;
 		color: $red;
 		font-weight: normal;
@@ -133,6 +133,10 @@ a:hover{
 }
 
 .ingredients, .directions{
-	margin-bottom: 50px;
+	margin: 30px 0 50px 0;
+
+	.link{
+		margin-top: 10px;
+	}
 
 }

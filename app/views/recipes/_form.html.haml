@@ -1,10 +1,6 @@
 .main_content
   #recipe_top
     = simple_form_for @recipe, :html => { :multipart => true } do |f|
-      .row
-        %h1{:clas => "page-header"}
-          = params[:action].capitalize
-          recipe
       - if @recipe.errors.any?
         #error_explanation
           %h2
@@ -21,11 +17,11 @@
         .col-md-8
           .recipe_info
             = f.label :title
-            %br/
+            %br
             = f.text_field :title, class: "form-control"
-            %br/
+            %br
             = f.label :description
-            %br/
+            %br
             = f.text_area :description, class: "form-control"
       .row
         .col-md-6
@@ -34,10 +30,15 @@
             .ingredient
               = f.simple_fields_for :ingredients do |ingredient|
                 = render 'ingredient_fields', f: ingredient
-              .links
-                = link_to_add_association 'Add Ingredient', f, :ingredients, class: "btn btn-default add-button"
+              .link
+                = link_to_add_association 'Add Ingredient', f, :ingredients, class: "btn btn-sm btn-success"
         .col-md-6
           .directions
-            %h1 Directions
+            %h3 Directions
+            .direction
+              = f.simple_fields_for :directions do |direction|
+                = render 'direction_fields', f: direction
+              .link
+                = link_to_add_association 'Add direction', f, :directions, class: "btn btn-sm btn-success"
       .row
         = f.submit "Save", class: "btn btn-lg btn-primary"
